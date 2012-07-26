@@ -26,12 +26,20 @@ public class User {
 	private Date parseDate(String input) {
 		Date date = null ;
 		DateFormat formatter ;
-		try {
-			formatter = new SimpleDateFormat("MM/dd/yyyy") ;
-			date = (Date) formatter.parse(input) ;
-		} catch (ParseException e) {
-			System.out.println("Exception: " + e) ;
-		}
+		if (input.contains("1900-01-01"))
+			try {
+				formatter = new SimpleDateFormat("yyyy-MM-dd") ;
+				date = (Date) formatter.parse(input) ;
+			} catch (ParseException e) {
+				System.out.println("Exception: " + e) ;
+			}
+		else
+			try {
+				formatter = new SimpleDateFormat("MM/dd/yyyy") ;
+				date = (Date) formatter.parse(input) ;
+			} catch (ParseException e) {
+				System.out.println("Exception: " + e) ;
+			}
 		return date ;
 	}
 }
